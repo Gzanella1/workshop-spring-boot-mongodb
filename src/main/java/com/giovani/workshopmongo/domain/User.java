@@ -1,5 +1,9 @@
 package com.giovani.workshopmongo.domain;
 
+import org.springframework.context.annotation.Primary;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -8,10 +12,12 @@ import java.util.Objects;
 *  que pode ser armazenado em arquivos, transmitido pela rede ou armazenado em um banco de dados,
 *  e posteriormente reconstruído em sua forma original (desserializado).
 */
+@Document
 public class User implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    @Id
     private String id;
     private String name;
     private String email;
