@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -33,6 +34,14 @@ public class UserResource {
         List<UserDTO> listDtos = list.stream().map(x -> new UserDTO(x)).collect(Collectors.toList());
 
         return ResponseEntity.ok().body(listDtos);
+    }
+    // ResponseEntity é uma reseposta http ja com possiveis cabeçalhos possiveis erros
+
+    @GetMapping(value="/{id}")
+    public ResponseEntity<UserDTO> findAll(@PathVariable String id) {
+        User user = userService.findById(id);
+        // converter para dto
+        return ResponseEntity.ok().body(new UserDTO(user));
     }
 
 
